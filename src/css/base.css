@@ -1,0 +1,76 @@
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+/* _________mobile adaptation___________*/
+.container {
+  min-width: 320px;
+  max-width: 375px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+section {
+  padding: 32px 0;
+}
+
+section:first-child {
+  margin: 0 0 32px 0;
+}
+
+section:last-child {
+  padding: 32px 0 64 0;
+}
+
+/* ___________tablet adaptation____________*/
+
+@media only screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  section {
+    padding: 48px 0;
+  }
+
+  section:first-child {
+    margin: 0 0 48px 0;
+  }
+
+  section:last-child {
+    padding: 48px 0 96px 0;
+  }
+}
+
+/* ____________desctop adaptation_____________*/
+
+@media only screen and (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+  }
+
+  section {
+    padding: 82px 0;
+  }
+
+  section:first-child {
+    margin: 0 0 82px 0;
+  }
+
+  section:last-child {
+    padding: 82px 0 164px 0;
+  }
+}

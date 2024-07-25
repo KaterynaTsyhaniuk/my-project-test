@@ -1,21 +1,47 @@
-.header {
-  padding: 20px 0;
+/* ___________Mobile adaptation___________*/
+
+.page-header {
+  position: absolute;
+  top: 32px;
+  right: 0;
+  left: 0;
 }
 
-.nav-list {
+.page-navigation {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 40px;
+  justify-content: space-between;
 }
 
-.nav-link {
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  line-height: 1.5;
+.header-logo-link {
+  display: flex;
+  gap: 8px;
+  border: 1px solid transparent;
+  height: 80px;
 }
 
-.nav-link:hover,
-.nav-link:focus {
-  color: #747bff;
+.header-logo-link:focus {
+  border: 1px solid rgba(250, 250, 250, 1);
+  outline: transparent;
+}
+
+.header-menu-container {
+  display: none;
+}
+
+.header-order-link {
+  display: none;
+}
+
+.mobile-menu-btn {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  background-color: transparent;
+}
+
+.mobile-menu-btn-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  fill: #fafafa;
 }

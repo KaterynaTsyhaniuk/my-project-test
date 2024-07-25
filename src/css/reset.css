@@ -1,4 +1,4 @@
-/* Reset styles */
+/* ____________Reset styles____________ */
 h1,
 h2,
 h3,
@@ -7,10 +7,6 @@ h5,
 h6,
 p {
   margin: 0;
-}
-
-p:last-child {
-  margin-bottom: 0;
 }
 
 ul {
@@ -25,11 +21,30 @@ a {
 }
 
 button {
+  font-family: inherit;
   cursor: pointer;
+  border: none;
 }
 
 img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+html {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
