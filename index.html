@@ -1,85 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/my-project-test/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
-    
-    <script type="module" crossorigin src="/my-project-test/commonHelpers.js"></script>
-    <link rel="stylesheet" href="/my-project-test/assets/index-10c40100.css">
-  </head>
-  <body>
-    <header class="header">
-  <nav class="nav">
-    <ul class="nav-list">
-      <li class="nav-item">
-        <a href="./page-2.html" class="nav-link">Page 2</a>
-      </li>
 
-      <li class="nav-item">
-        <a href="./page-3.html" class="nav-link">Page 3</a>
-      </li>
-    </ul>
-  </nav>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/my-project-test/assets/favicon-0493e874.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jefferson</title>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css" />
+  
+  <script type="module" crossorigin src="/my-project-test/commonHelpers.js"></script>
+  <link rel="stylesheet" href="/my-project-test/assets/index-6e96887d.css">
+</head>
+
+<body>
+  <header class="page-header" id="page-header">
+    <div class="container">
+        <nav class="page-navigation">
+            <a class="header-logo-link" href="./index.html" aria-label="Website logo">
+                <img src="/my-project-test/assets/header-avatar-50e36350.png" srcset="/my-project-test/assets/header-avatar-50e36350.png 1x, /my-project-test/assets/header-avatar@2x-7d354549.png 2x" alt="Website logo" class="header-logo-avatar" width="80" height="80" />
+                <p class="header-logo-text">jefferson*</p>
+            </a>
+
+            <div class="header-menu-container">
+                <button type="button" class="header-menu-btn" aria-label="Navigation menu list button">
+                    Menu
+                </button>
+                <ul class="header-menu-list visually-hidden menu-is-hidden">
+                    <li class="header-menu-item">
+                        <a class="header-menu-link" href="#about-me" aria-label="Navigation link">About me</a>
+                    </li>
+                    <li class="header-menu-item">
+                        <a class="header-menu-link" href="#benefits" aria-label="Navigation link">Benefits</a>
+                    </li>
+                    <li class="header-menu-item">
+                        <a class="header-menu-link" href="#projects" aria-label="Navigation link">Projects</a>
+                    </li>
+                    <li class="header-menu-item">
+                        <a class="header-menu-link" href="#faq" aria-label="Navigation link">FAQ</a>
+                    </li>
+                </ul>
+            </div>
+
+            <a class="header-order-link" href="#work-together" aria-label="Order the project link">Order the project
+            </a>
+            <button class="mobile-menu-btn" type="button" aria-label="Open mobile menu button">
+                <svg class="mobile-menu-btn-icon" width="28" height="28">
+                    <use href="/my-project-test/assets/icons-01984581.svg#icon-mobile-menu"></use>
+                </svg>
+            </button>
+        </nav>
+    </div>
 </header>
 
+<button type="button" aria-label="Back to Top button" class="back-to-top-btn">
+    <svg class="back-to-top-btn-icon" width="20" height="20">
+        <use href="/my-project-test/assets/icons-01984581.svg#icon-arrow-up"></use>
+    </svg>
+</button>
 
-    <section>
-      <h1>Example page title</h1>
-      <!-- Path to images as from index.html file -->
-      <img src="/my-project-test/assets/javascript-8dac5379.svg" alt="" />
-    </section>
+<div class="progress-bar"></div>
+  <main>
 
-    <!-- Loads the specified .html file -->
-    <section class="vite-promo">
-  <div class="container">
-    <div class="wrapper">
-      <h2 class="title">
-        <span class="gradient">Vite</span>
-      </h2>
-      <p class="text">Next Generation Frontend Tooling</p>
-      <p class="tagline">
-        Get ready for a development environment that can finally catch up with
-        you.
-      </p>
+  </main>
 
-      <ul class="actions">
-        <li class="action">
-          <a
-            class="link"
-            href="https://vitejs.dev/guide/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Get Started</a
-          >
-        </li>
-        <li class="action">
-          <a
-            class="link"
-            href="https://github.com/vitejs/vite"
-            target="_blank"
-            rel="noopener noreferrer"
-            >View on GitHub</a
-          >
-        </li>
-      </ul>
-    </div>
+  
+</body>
 
-    <div class="thumb">
-      <!-- Path to images as from index.html file -->
-      <img
-        class="pic"
-        src="/my-project-test/assets/vite-logo-51249ca9.png"
-        alt="Vite logo"
-        width="640"
-        height="640"
-      />
-    </div>
-  </div>
-</section>
-
-
-    
-  </body>
 </html>
