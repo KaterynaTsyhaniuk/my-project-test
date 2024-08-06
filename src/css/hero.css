@@ -63,9 +63,6 @@
 
 /*  ______________tablet adaptation____________ */
 @media only screen and (min-width: 768px) {
-  section:last-child {
-    padding-top: 300px;
-  }
   .hero {
     background-image: url('../img/hero/hero-tablet.png');
   }
