@@ -189,8 +189,7 @@
   transform: rotate(180deg);
 }
 
-/* ============  Swiper ================*/
-
+/*///////////    section Swiprer    ///////////*/
 .about-container-skills {
   display: flex;
   align-items: center;
@@ -249,7 +248,14 @@
   stroke: #fafafa;
 }
 
-@media only screen and (min-width: 768px) {
+.about-swiper-svg {
+  width: 28px;
+  height: 28px;
+}
+
+/*---------------------------- Adaptive tablet ----------------------------*/
+
+@media screen and (min-width: 768px) {
   .about-skills-swiper {
     width: 600px;
   }
@@ -266,6 +272,7 @@
     height: 40px;
   }
 }
+/*---------------------------- Adaptive desktop ----------------------------*/
 
 @media screen and (min-width: 1440px) {
   .about-container-skills {
