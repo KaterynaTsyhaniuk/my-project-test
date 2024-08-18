@@ -4,3 +4,4 @@ import './js/mobile-menu.js';
 import './js/about-me.js';
 import './js/benefits.js';
 import './js/projects.js';
+import './js/faq.js';
