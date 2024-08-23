@@ -1,5 +1,5 @@
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
+// import iziToast from 'izitoast';
+// import 'izitoast/dist/css/iziToast.min.css';
 import Swiper from 'swiper/bundle';
 import axios from 'axios';
 import 'swiper/css/bundle';
@@ -8,23 +8,17 @@ const urlapi = 'https://portfolio-js.b.goit.study/api/reviews';
 const reviewlist = document.querySelector('.reviews-list');
 const prevbtnEl = document.querySelector('.reviews-js-btn-prev');
 
-// console.dir(prevbtnEl);
 const nextbtnEl = document.querySelector('.reviews-js-btn-next');
-// console.dir(nextbtnEl);
-const prevsvgbtn = document.querySelectorAll('.reviews-js-icon-prev');
-// console.dir(prevsvgbtn);
-const nextsvgbtn = document.querySelectorAll('.reviews-js-icon-next');
-// console.dir(nextsvgbtn);
 
 const fetchReviews = async url => {
   try {
     const response = await axios.get(url);
     return response.data;
   } catch (error) {
-    iziToast.error({
-      position: 'topRight',
-      message: 'Sorry, something went wrong. Please try again later.',
-    });
+    // iziToast.error({
+    //   position: 'topRight',
+    //   message: 'Sorry, something went wrong. Please try again later.',
+    // });
     console.error('Data upload error:', error);
 
     return {};
