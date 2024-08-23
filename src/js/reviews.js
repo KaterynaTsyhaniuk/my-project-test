@@ -20,7 +20,7 @@ const fetchReviews = async url => {
     });
     console.error('Data upload error:', error);
 
-    return [];
+    return {};
   }
 };
 fetchReviews(urlApi).then(reviews => {
