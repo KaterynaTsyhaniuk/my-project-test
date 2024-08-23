@@ -1,182 +1,90 @@
-import Swiper from 'swiper';
-import { Navigation, Keyboard } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-
-Swiper.use([Navigation, Keyboard]);
-
-export function initSwiper(containerSelector, options) {
-  return new Swiper(containerSelector, options);
-}
-import axios from 'axios';
-
-const BASE_URL = 'https://portfolio-js.b.goit.study/api';
-
-async function getData() {
-  const response = await axios(`${BASE_URL}/reviews`);
-  return response.data;
-}
-
-const reviewsListEl = document.querySelector('.reviews-list');
-const reviewsSection = document.querySelector('.reviews-section');
-
-import * as basicLightbox from 'basiclightbox';
-import 'basiclightbox/dist/basicLightbox.min.css';
-
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import Swiper from 'swiper/bundle';
+import axios from 'axios';
+import 'swiper/css/bundle';
+const urlapi = 'https://portfolio-js.b.goit.study/api/reviews';
 
-let reviewsLoaded = false;
+const reviewlist = document.querySelector('.reviews-list');
+const prevbtnEl = document.querySelector('.reviews-js-btn-prev');
 
-const projectsInitSwiper = initSwiper('.rewiews-list-wrapper', {
-  keyboard: {
-    enabled: true,
-    onlyInViewport: false,
-  },
-  direction: 'horizontal',
-  slidesPerView: 1,
-  spaceBetween: 16,
-  navigation: {
-    nextEl: '.rewiews-button-next',
-    prevEl: '.rewiews-button-prev',
-  },
-  breakpoints: {
-    768: {
-      slidesPerView: 2,
-      spaceBetween: 16,
-    },
-    1440: {
-      slidesPerView: 4,
-      spaceBetween: 16,
-    },
-  },
-});
+// console.dir(prevbtnEl);
+const nextbtnEl = document.querySelector('.reviews-js-btn-next');
+// console.dir(nextbtnEl);
+const prevsvgbtn = document.querySelectorAll('.reviews-js-icon-prev');
+// console.dir(prevsvgbtn);
+const nextsvgbtn = document.querySelectorAll('.reviews-js-icon-next');
+// console.dir(nextsvgbtn);
 
-// Функція, яка перевірятиме видимість секції з відгуками
-function checkReviewsVisibility(entries, observer) {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      searchReviews();
-      reviewsLoaded = true;
-      observer.unobserve(reviewsSection);
-    }
-  });
-}
+const fetchReviews = async url => {
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    iziToast.error({
+      position: 'topRight',
+      message: 'Sorry, something went wrong. Please try again later.',
+    });
+    console.error('Data upload error:', error);
 
-// Створення спостерігача для секції з відгуками
-const observer = new IntersectionObserver(checkReviewsVisibility, {
-  root: null,
-  threshold: 0.5,
-});
-
-// Додаємо секцію з відгуками до спостерігача
-observer.observe(reviewsSection);
-
-async function searchReviews() {
-  if (!reviewsLoaded) {
-    try {
-      const response = await getData();
-      if (response.length === 0) {
-        reviewsListEl.innerHTML = createError();
-
-        iziToast.error({
-          title: '',
-          message: 'NOT FOUND',
-          position: 'bottomRight',
-          timeout: 3000,
-          pauseOnHover: false,
-        });
-      } else {
-        reviewsListEl.insertAdjacentHTML('beforeend', createMarkup(response));
-      }
-    } catch (error) {
-      reviewsListEl.innerHTML = createError();
-
-      iziToast.error({
-        title: '',
-        message: error.message,
-        position: 'bottomRight',
-        timeout: 3000,
-        pauseOnHover: false,
-      });
-    }
+    return {};
   }
-}
+};
+fetchReviews(urlapi).then(reviews => {
+  // console.log('Отримані відгуки:', reviews);
+  if (reviews.length === 0) {
+    reviewlist.innerHTML = '<p>Not found</p>';
+  } else {
+    reviewlist.innerHTML = createReviewsList(reviews);
+  }
+  const reviewsSwiper = new Swiper('.swiper-reviews', {
+    modules: Navigation,
+    direction: 'horizontal',
+    slidesPerView: 1,
+    slidesPerGroup: 1,
+    spaceBetween: 16,
+    touch: true,
+    wrapperClass: 'reviews-list',
+    slideClass: 'reviews-item',
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 16,
+        slidesPerGroup: 1,
+      },
+      1440: {
+        slidesPerView: 4,
+        spaceBetween: 16,
+        slidesPerGroup: 1,
+      },
+    },
+    navigation: {
+      nextEl: '.reviews-js-btn-next',
+      prevEl: '.reviews-js-btn-prev',
+    },
+    keyboard: {
+      enabled: true,
+      onlyInViewport: false,
+    },
+  });
+});
 
-function createMarkup(arr) {
-  return arr
+const createReviewsList = reviews => {
+  return reviews
     .map(
-      ({ _id, author, avatar_url, review }) =>
-        `<li class="rewiews-list-element swiper-slide" data-id="${_id} ">
-        <img
-            class="rewiews-img"
-            width="48px"
-            src="${avatar_url}"
-            srcset="${avatar_url} 1x, ${avatar_url} 2x"
-            alt="${author}"
-            loading ="lazy"
-          />
-          <h3 class="rewiew-element-title">${author}</h3>
-          <p class="rewiews-text">${review}</p>
-        </li>`
+      reviewData => ` 
+     <li class="reviews-item" id="${reviewData._id - 1}">
+           <img
+              class="reviews-avatar"
+              alt="${reviewData.author}"
+              src="${reviewData.avatar_url}" 
+            />          
+          <h3 class="reviews-name">${reviewData.author}</h3>
+          <p class="reviews-text">
+            ${reviewData.review}
+          </p>
+    </li>
+  `
     )
     .join('');
-}
-
-function createError() {
-  return `<li class="reviews-error-item">
-  <p class="reviews-error-text">NOT FOUND</p>
-  </li>`;
-}
-
-// Функція модального вікна
-
-reviewsListEl.addEventListener('click', handleClick);
-
-function handleClick(event) {
-  event.preventDefault();
-
-  const reviewElement = event.target.closest('.rewiews-list-element');
-
-  if (reviewElement) {
-    const avatarUrl = reviewElement
-      .querySelector('.rewiews-img')
-      .getAttribute('src');
-    const author = reviewElement.querySelector(
-      '.rewiew-element-title'
-    ).textContent;
-    const review = reviewElement.querySelector('.rewiews-text').textContent;
-
-    const instance = basicLightbox.create(
-      `
-      <div class="modal">
-        <img
-          class="rewiews-img"
-          width="48px"
-          src="${avatarUrl}"
-          alt="${author}"
-          loading="lazy"
-        />
-        <h3>${author}</h3>
-        <p>${review}</p>
-      </div>
-      `,
-      {
-        onShow: instance => {
-          window.addEventListener('keydown', onEscPress);
-        },
-        onClose: instance => {
-          window.removeEventListener('keydown', onEscPress);
-        },
-      }
-    );
-
-    instance.show();
-
-    function onEscPress(event) {
-      if (event.code === 'Escape') {
-        instance.close();
-      }
-    }
-  }
-}
+};
