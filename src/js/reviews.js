@@ -3,24 +3,11 @@ import 'izitoast/dist/css/iziToast.min.css';
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 import axios from 'axios';
-
+import { createReviewsList } from './review-render-functions';
 const urlApi = 'https://portfolio-js.b.goit.study/api/reviews';
 const reviewList = document.querySelector('.reviews-list');
 const prevbtnEl = document.querySelector('.reviews-button-prev');
 const nextbtnEl = document.querySelector('.reviews-button-next');
-const createReviewsList = reviews => {
-  return reviews
-    .map(
-      reviewData =>
-        `<li class="reviews-item" id="${
-          reviewData._id - 1
-        }"><img class="reviews-avatar" alt="${reviewData.author}" src="${
-          reviewData.avatar_url
-        }" /><h3 class="reviews-name">${reviewData.author}</h3>
-      <p class="reviews-text">${reviewData.review}</p></li>`
-    )
-    .join('');
-};
 
 const fetchReviews = async url => {
   try {
@@ -73,5 +60,3 @@ fetchReviews(urlApi).then(reviews => {
     },
   });
 });
-
-
