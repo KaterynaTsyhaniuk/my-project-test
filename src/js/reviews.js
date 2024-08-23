@@ -1,31 +1,32 @@
-// import iziToast from 'izitoast';
-// import 'izitoast/dist/css/iziToast.min.css';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 import Swiper from 'swiper/bundle';
-import axios from 'axios';
 import 'swiper/css/bundle';
+
 const urlapi = 'https://portfolio-js.b.goit.study/api/reviews';
 
 const reviewlist = document.querySelector('.reviews-list');
 const prevbtnEl = document.querySelector('.reviews-js-btn-prev');
-
 const nextbtnEl = document.querySelector('.reviews-js-btn-next');
 
 const fetchReviews = async url => {
   try {
-    const response = await axios.get(url);
-    return response.data;
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return await response.json();
   } catch (error) {
-    // iziToast.error({
-    //   position: 'topRight',
-    //   message: 'Sorry, something went wrong. Please try again later.',
-    // });
+    iziToast.error({
+      position: 'topRight',
+      message: 'Sorry, something went wrong. Please try again later.',
+    });
     console.error('Data upload error:', error);
-
-    return {};
+    return [];
   }
 };
+
 fetchReviews(urlapi).then(reviews => {
-  // console.log('Отримані відгуки:', reviews);
   if (reviews.length === 0) {
     reviewlist.innerHTML = '<p>Not found</p>';
   } else {
