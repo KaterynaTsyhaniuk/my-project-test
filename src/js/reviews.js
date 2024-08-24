@@ -22,7 +22,7 @@ const fetchReviews = async url => {
       message: 'Sorry, something went wrong. Please try again later.',
     });
     console.error('Data upload error:', error);
-    return [];
+    return {};
   }
 };
 
@@ -33,7 +33,6 @@ fetchReviews(urlapi).then(reviews => {
     reviewlist.innerHTML = createReviewsList(reviews);
   }
   const reviewsSwiper = new Swiper('.swiper-reviews', {
-    modules: Navigation,
     direction: 'horizontal',
     slidesPerView: 1,
     slidesPerGroup: 1,
