@@ -5,6 +5,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 const refs = {
   formElem: document.querySelector('.footer-form'),
   inputMailElem: document.querySelector('.footer-form-input-mail'),
+  inputCommentsElem: document.querySelector('.footer-form-input-comments'),
   spanValidElem: document.querySelector('.valid-notification'),
   backDropElem: document.querySelector('.footer-backdrop'),
   closeModalElem: document.querySelector('.footer-modal-close-btn'),
@@ -117,6 +118,18 @@ function loadFromLS(key) {
 
 function checkInputValidity() {
   const email = refs.formElem.elements.email.value.trim();
+  const comments = refs.formElem.elements.comments.value.trim();
+
+  if (!refs.formElem.elements.comments.validity.valid) {
+    refs.formSubmitBtnElem.setAttribute('disabled', '');
+    createErrorCommentsNotif();
+  } else {
+    refs.spanValidElem.textContent = 'Success!';
+    refs.inputCommentsElem.classList.remove('input-error');
+    refs.spanValidElem.classList.remove('notif-error');
+    refs.inputCommentsElem.classList.add('input-success');
+    refs.formSubmitBtnElem.removeAttribute('disabled', '');
+  }
   if (!refs.formElem.elements.email.validity.valid) {
     refs.formSubmitBtnElem.setAttribute('disabled', '');
     createErrorMailNotif();
@@ -129,6 +142,12 @@ function checkInputValidity() {
   }
 }
 
+function createErrorCommentsNotif() {
+  refs.inputCommentsElem.classList.add('input-error');
+  refs.spanValidElem.classList.add('notif-error');
+  refs.spanValidElem.textContent = 'Please, fill the field';
+}
+
 function createErrorMailNotif() {
   refs.inputMailElem.classList.add('input-error');
   refs.spanValidElem.classList.add('notif-error');
@@ -138,6 +157,7 @@ function createErrorMailNotif() {
 function clearNotifField() {
   refs.spanValidElem.textContent = '';
   refs.inputMailElem.classList.remove('input-success');
+  refs.inputCommentsElem.classList.remove('input-success');
   refs.spanValidElem.classList.remove('notif-error');
 }
 
