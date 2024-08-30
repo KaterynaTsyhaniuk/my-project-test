@@ -17,12 +17,12 @@ const refs = {
 // Завантаження даних з Local Storage при завантаженні сторінки
 window.addEventListener('DOMContentLoaded', () => {
   const email = loadFromLS('email');
-  const comments = loadFromLS('comments');
+  // const comments = loadFromLS('comments');
   if (email) {
     refs.formElem.elements.email.value = email;
     addEmailToList(email);
   }
-  if (comments) refs.formElem.elements.comments.value = comments;
+  // if (comments) refs.formElem.elements.comments.value = comments;
 });
 
 // Валідація та обробка введення
@@ -43,7 +43,7 @@ refs.formElem.addEventListener('submit', async event => {
   }
 
   saveToLS('email', email);
-  saveToLS('comments', comments);
+  // saveToLS('comments', comments);
   addEmailToList(email);
 
   const userInfo = { email, comment: comments };
@@ -54,13 +54,19 @@ refs.formElem.addEventListener('submit', async event => {
   try {
     const response = await createRequest(userInfo);
     showModal(response.title, response.message);
-    refs.formElem.reset();
-    localStorage.removeItem('email');
-    localStorage.removeItem('comments');
+    populateFormFromLocalStorage();
   } catch (error) {
     iziToast.error(iziToastErrorObj);
   } finally {
     hideLoader();
+  }
+
+  function populateFormFromLocalStorage() {
+    const email = loadFromLS('email');
+    // const comments = loadFromLS('comments');
+    if (email) refs.formElem.elements.email.value = email;
+    // if (comments) refs.formElem.elements.comments.value = comments;
+    refs.formElem.reset();
   }
 });
 

@@ -40,3 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+window.addEventListener('scroll', () => {
+  const scrollPosition = window.scrollY;
+  const windowHeight =
+    document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercentage = (scrollPosition / windowHeight) * 100;
+  document.querySelector('.progress-bar').style.width = scrollPercentage + '%';
+});

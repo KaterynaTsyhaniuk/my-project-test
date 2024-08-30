@@ -165,15 +165,6 @@
   top: 0;
   z-index: 1000000;
   background-color: #ed3b44;
-  width: 100%;
-  scale: 0 1;
+  width: 0%;
   transform-origin: left;
-  animation: progress-bar linear;
-  animation-timeline: scroll();
-}
-
-@keyframes progress-bar {
-  to {
-    scale: 1 1;
-  }
 }

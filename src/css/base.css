@@ -30,7 +30,7 @@ section:first-child {
 }
 
 section:last-child {
-  padding: 32px 0 64 0;
+  padding: 32px 0 64px 0;
 }
 
 /* ___________tablet adaptation____________*/
